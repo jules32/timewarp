@@ -19,7 +19,7 @@ This means that we're going to start of plotting Day v. Depth, with color as an 
 
 ## Setup
 
-Load appropriate libraries. `tidyverse` is a meta-package (see [tidyverse.org](https://www.tidyverse.org/))It will load `dplyr` and `ggplot2`, which we will use a lot. We'll also use `lubridate`.
+Load appropriate libraries. `tidyverse` is a meta-package (see [tidyverse.org](https://www.tidyverse.org/)). It will load `dplyr` and `ggplot2`, which we will use a lot. We'll also use `lubridate`.
 
 ```{r, message=FALSE}
 library(tidyverse)
