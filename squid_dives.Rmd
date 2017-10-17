@@ -72,6 +72,6 @@ How we'll do it:
 1. read [OHI data science training](http://ohi-science.org/data-science-training/github-rstudio.html) Chapters 4-5 (and please tell me if it doesn't make sense!! It's a work in progress!)
 - use the Cheatsheet and play around!
 
-whitney
+whitney, is adding more....
 
 
