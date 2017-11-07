@@ -31,7 +31,7 @@ library(lubridate)
 
 And get a sense of 
 ```{r, message=FALSE}
-d <- readr::read_csv('data/83052-Series.csv', skip = 2)
+d <- readr::read_csv('data/83052-Series.csv', skip = 3)
 
 ## little peek of first 6 rows (default)
 head(d)
@@ -73,5 +73,22 @@ How we'll do it:
 - use the Cheatsheet and play around!
 
 whitney, is adding more....
+## Some notes about dates and time:
+## Use dplyr to form a date-time by using the following function dmy_hms() or make_datetime(year, month, day, hour, second)
 
+## I thought about trying this function but didnt end up using it 
+#parse_datetime()
 
+#I dont think I needed to unclass the date field since its just a character string
+#unclass(d$Date)
+
+#Making a new column of combined date and time and calling it dt
+d$date_time = dmy_hms(paste(d$Day, d$Time))
+dt <-d$date_time
+
+#Now we can try to plot depth based on our combined day and time
+
+```{r, message=FALSE}
+ggplot(data = d) +
+  geom_point(mapping = aes(x = dt, y = Depth, color = Temperature))
+```
