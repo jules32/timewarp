@@ -74,21 +74,38 @@ How we'll do it:
 
 whitney, is adding more....
 ## Some notes about dates and time:
-## Use dplyr to form a date-time by using the following function dmy_hms() or make_datetime(year, month, day, hour, second)
 
-## I thought about trying this function but didnt end up using it 
-#parse_datetime()
+- Use dplyr to form a date-time by using the following function dmy_hms() or make_datetime(year, month, day, hour, second)
 
-#I dont think I needed to unclass the date field since its just a character string
-#unclass(d$Date)
+- I thought about trying this function but didnt end up using it 
+`parse_datetime()`
 
-#Making a new column of combined date and time and calling it dt
+- I dont think I needed to unclass the date field since its just a character string
+unclass(d$Date)
+
+Making a new column of combined date and time and calling it dt:
+
+```{r}
 d$date_time = dmy_hms(paste(d$Day, d$Time))
 dt <-d$date_time
 
-#Now we can try to plot depth based on our combined day and time
+## and here's how you'd do this with the tidyverse, within the d dataframe:
+d <- d %>%
+  mutate(DateTime = lubridate::dmy_hms(paste(Day, Time)))
+```
+
+## Now we can try to plot depth based on our combined day and time
 
 ```{r, message=FALSE}
 ggplot(data = d) +
-  geom_point(mapping = aes(x = dt, y = Depth, color = Temperature))
+  geom_point(mapping = aes(x = DateTime, y = Depth, color = Temperature))
 ```
+
+## Very cool! 
+Now we can flip the y axes (since it's customary to make the top of the graph like the surface of the ocean)
+```{r}
+ggplot(data = d) +
+  geom_point(mapping = aes(x = DateTime, y = Depth, color = Temperature)) +
+  scale_y_reverse()
+```
+
